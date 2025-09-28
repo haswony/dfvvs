@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .profile-container {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #4285f4;
+      margin-bottom: 20px;
+    }
+    .profile-info {
+      margin-bottom: 30px;
+    }
+    .edit-form {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    .edit-form input, .edit-form button {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .edit-form button {
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .edit-form button:hover {
+      background-color: #3367d6;
+    }
+    .nav-links {
+      margin-top: 20px;
+    }
+    .nav-links a {
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="profile-info">
+      <img src="<%= user.profile_pic || '/default-profile.png' %>" alt="Profile Picture" class="profile-pic">
+      <h1><%= user.name %></h1>
+      <p><%= user.email %></p>
+    </div>
+
+    <div class="edit-form">
+      <h2>Edit Profile</h2>
+      <form action="/profile" method="POST" enctype="multipart/form-data">
+        <input type="text" name="name" value="<%= user.name %>" placeholder="Name" required>
+        <input type="file" name="profilePic" accept="image/*">
+        <button type="submit">Update Profile</button>
+      </form>
+    </div>
+
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/logout">Logout</a>
+    </div>
+  </div>
+</body>
+</html>
